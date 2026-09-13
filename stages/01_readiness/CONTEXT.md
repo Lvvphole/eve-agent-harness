@@ -1,8 +1,8 @@
-# Stage 01_readiness: Readiness
+# Route 01_readiness: Readiness
 
 ## Repository Access
 
-The only repository path authority for this stage is
+The only repository path authority for this route is
 `../../references/routes/01_readiness.json` under `../../references/routing-policy.md`.
 Do not infer read, grep, or write permission from prose. Any unlisted path is
 `BLOCKED`.
