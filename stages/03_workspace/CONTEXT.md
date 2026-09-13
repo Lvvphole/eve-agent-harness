@@ -1,8 +1,8 @@
-# Stage 03_workspace: Detached Workspace
+# Route 03_workspace: Detached Workspace
 
 ## Repository Access
 
-The only repository path authority for this stage is
+The only repository path authority for this route is
 `../../references/routes/03_workspace.json` under `../../references/routing-policy.md`.
 Do not infer read, grep, or write permission from prose. Any unlisted path is
 `BLOCKED`.
