@@ -33,5 +33,6 @@
     "src/schemas/persistence.ts",
     "tests/persistence.test.ts",
     "src/engine/persistence.ts"
-  ]
+  ],
+  "protected_write_exact": []
 }
