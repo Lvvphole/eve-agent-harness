@@ -2,6 +2,9 @@
 
 ## Inputs
 
+- Layer 3: `../../references/routing-policy.md`
+- Layer 3: `../../references/routes/global.json`
+- Layer 3: `../../references/routes/05_exporter.json`
 - Layer 3: `../../references/engineering-rules.md`
 - Layer 3: `../../references/security-boundaries.md`
 - Layer 3: `../../references/verification-policy.md`
