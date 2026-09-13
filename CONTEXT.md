@@ -3,7 +3,7 @@
 The supervisor must supply exactly one `route_id` in the TaskEnvelope. Agents
 must not infer, select, or change the stage from task prose.
 
-| route_id | Stage contract |
+| route_id | Context contract |
 |---|---|
 | `00_bootstrap` | `stages/00_bootstrap/CONTEXT.md` |
 | `01_readiness` | `stages/01_readiness/CONTEXT.md` |
@@ -18,12 +18,12 @@ Load order:
 
 1. `CLAUDE.md` -> `@AGENTS.md`.
 2. This file.
-3. The exact stage contract mapped from `route_id`.
+3. The exact context contract mapped from `route_id`.
 4. Only references and working artifacts named by that stage.
 
-If `route_id` is absent, unknown, or conflicts with the loaded stage, stop as
+If `route_id` is absent, unknown, or conflicts with the loaded context route, stop as
 `BLOCKED`.
 
 Every repository `read`, `grep`, or `write` is separately authorized by
-`references/routing-policy.md` and the active stage route file. Unlisted paths
+`references/routing-policy.md` and the active route file. Unlisted paths
 are `BLOCKED`.
