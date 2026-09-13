@@ -1,6 +1,5 @@
 {
   "schema_version": 1,
-  "stage_id": "06_persistence",
   "read_exact": [
     "AGENTS.md",
     "CLAUDE.md",
@@ -34,5 +33,6 @@
     "tests/persistence.test.ts",
     "src/engine/persistence.ts"
   ],
-  "protected_write_exact": []
+  "protected_write_exact": [],
+  "route_id": "06_persistence"
 }
