@@ -9,13 +9,25 @@ sealing, protected-state, or merge authority.
 Authority order:
 1. This root `AGENTS.md`.
 2. Human-authorized TaskEnvelope and protected supervisor state.
-3. Root `CLAUDE.md` execution directives.
-4. `references/proposal-contract.md` and other human-authored references.
-5. Strict runtime schemas.
-6. Sealed DAG and deterministic machine evidence.
+3. Human-owned Layer 3 references and protected `.harness/` configuration.
+4. Strict runtime schemas.
+5. Sealed DAG and deterministic machine evidence.
 
-Nested `AGENTS.md` files are forbidden. Lower authority may restrict but never
-expand higher authority.
+`CLAUDE.md` must contain exactly `@AGENTS.md` and has no independent authority.
+`CONTEXT.md` and stage `CONTEXT.md` files route/scoped-load authority; they may
+never expand it. Nested `AGENTS.md` files are forbidden.
+
+## ICM Context Hierarchy
+
+- Layer 0: `AGENTS.md`, imported by the one-line `CLAUDE.md`.
+- Layer 1: root `CONTEXT.md` routes a task to exactly one stage.
+- Layer 2: `stages/<stage>/CONTEXT.md` defines Inputs, Process, and Outputs.
+- Layer 3: `references/` contains stable constraints selected by the stage.
+- Layer 4: per-run proposals, workpieces, evidence, and other working artifacts.
+
+Load only the active stage's declared context. Do not preload unrelated stages,
+references, logs, proposals, or supervisor state. Workers may not modify routing
+documents unless an exact human TaskEnvelope authorizes that protected change.
 
 ## Architecture Contract
 
@@ -36,31 +48,29 @@ them. No agent may split one logical change to evade the ceiling.
 
 ## Zero Interface Speculation
 
-Do not invent fields, paths, authorities, operations, or compatibility aliases.
-All security-relevant strings are validated. Canonical relative paths must not
-contain empty, `.`, `..`, NUL, drive-prefix, or absolute-path segments.
-SHA-256 identities are lowercase hexadecimal with `sha256:` plus 64 hex digits.
-Unknown Zod object properties fail validation.
+Do not invent fields, paths, authorities, operations, stages, or aliases.
+Canonical relative paths must not contain empty, `.`, `..`, NUL, drive-prefix,
+or absolute-path segments. SHA-256 identities use `sha256:` plus 64 lowercase
+hex digits. Unknown Zod object properties fail validation.
 
 ## Workpiece Boundary
 
 A target repository is materialized into a scrubbed scratchpad without `.git`,
 `.github`, workflow files, supervisor state, credentials, or host metadata.
 SCOUT sees only authorized read-only source/AST content and frozen proposal
-contracts. PLAN may emit only `.proposals/*.json`. Proposal ingestion unlinks a
-staged proposal immediately after supervisor read.
+contracts. PLAN may emit only `.proposals/*.json`; the supervisor unlinks each
+staged proposal immediately after reading its bytes.
 
-Target writes are allowed only in IMPLEMENT mode, only after `PRE_CODE_READY`,
-and only inside `authorized_candidate_paths` in the isolated workpiece.
+Target writes are allowed only in IMPLEMENT mode, after `PRE_CODE_READY`, and
+only inside `authorized_candidate_paths` in the isolated workpiece.
 
 ## Sensitive Paths
 
 Workers have zero access to:
-- `.harness/` private state, including `ed25519.key`, lowering tables, static
-  gates, and verification registries.
-- `.scratch/` and `logs/` supervisor sandboxes and quarantined traces.
-- Target `.git/`, `.github/`, workflow files, or unauthorized target paths.
-- `/var/run/docker.sock`, host volumes, supervisor secrets, or Git credentials.
+- `.harness/`, including private keys, lowering tables, static gates, registries;
+- `.scratch/` and `logs/`;
+- target `.git/`, `.github/`, workflows, or unauthorized target paths;
+- `/var/run/docker.sock`, host volumes, secrets, or Git credentials.
 
 ## Human-Exclusive Authority
 
@@ -88,9 +98,9 @@ Revoked: shell execution, compiler execution, patching, git, sealing.
 
 ### IMPLEMENT
 Requires `PRE_CODE_READY` and a sealed DAG. Permitted: bounded `write_file` and
-sandboxed `bash` only within authorized candidate paths. Forbidden: raw package
-installs, network/socket access, git operations, host mounts, sealing, authority
-mutation, or self-verification.
+sandboxed `bash` inside authorized candidate paths. Forbidden: raw package
+installs, network/socket access, git, host mounts, sealing, authority mutation,
+or self-verification.
 
 Mid-flight capability revocation terminates execution. Three consecutive
 oscillating/repetitive tool invocations halt the node.
@@ -110,10 +120,9 @@ Architectural boundary violation, schema weakening/mutation, protected-state
 mutation, test softening, authority expansion, sandbox escape, evidence
 tampering, or LOC-cap bypass has repair budget zero.
 
-On detection: terminate execution, mark branch terminal, preserve the exact
-failure as negative evidence, append the failure receipt, delete the active
-branch, restart from authorized `main`, and return to Stage A. Do not repair the
-violated branch.
+On detection: terminate execution, mark the branch terminal, preserve exact
+negative evidence, append the failure receipt, and await human branch-termination
+authority before deletion/restart. Do not repair a terminal branch.
 
 Tactical implementation errors have at most two bounded repair iterations.
 
@@ -125,8 +134,8 @@ and no Docker socket. Tool capability may only decrease during execution.
 
 ## Evidence Contract
 
-Machine evidence, not model prose, determines state. Required artifacts include:
-- `trace_red.log`: expected Stage C failure before Stage B.
+Machine evidence, not model prose, determines state:
+- `trace_red.log`: intended Stage C failure before Stage B.
 - `trace_green.log`: Stage C pass after Stage B.
 - `tree_hash.receipt`: deterministic scrubbed-workpiece SHA-256 manifest.
 - `DELIVERY.txt`: machine-templated digest/signature receipt.
@@ -137,10 +146,9 @@ Candidate digest format: `^sha256:[a-f0-9]{64}$`.
 
 ## Stage C Anti-Reward-Hacking Rules
 
-Forbidden Vitest members: `test.skip`, `it.skip`, `describe.skip`, `test.only`,
-`it.only`. Tests may not mock `crypto`, `fs`, `node:child_process`, or supervisor
-verification engines. Tautological assertions such as `toBeDefined()`,
-generic truthiness, or vacuous length comparisons are rejected.
+Forbidden: `test.skip`, `it.skip`, `describe.skip`, `test.only`, `it.only`.
+Tests may not mock `crypto`, `fs`, `node:child_process`, or supervisor verifier
+engines. Tautological assertions and vacuous truthiness/length checks fail lint.
 
 A red oracle counts only when it fails for the intended falsification reason.
 Freeze Stage C oracle bytes before Stage B; changing them requires reset.
@@ -148,30 +156,30 @@ Freeze Stage C oracle bytes before Stage B; changing them requires reset.
 ## TypeScript Mechanical Rules
 
 Canonical source: https://google.github.io/styleguide/tsguide.html
-Frozen source SHA-256: `f175e2dbbea31bc40a73e757bbea11f53ad1580bd5d6aa4d10288fa6505832bb`.
+Frozen source SHA-256:
+`f175e2dbbea31bc40a73e757bbea11f53ad1580bd5d6aa4d10288fa6505832bb`.
 
-Mechanical AST gates must enforce:
-- zero type assertions and zero non-null assertions;
-- zero explicit `any`; `noImplicitAny` enabled;
-- explicit parameter and return types on exported functions;
+Mechanical AST gates enforce:
+- zero type assertions, non-null assertions, and explicit `any`;
+- `noImplicitAny` and explicit exported parameter/return types;
 - readonly properties/arrays in Stage A type files;
 - object-type nesting depth `<= 3`;
-- bounded termination for recursive schemas;
-- no untyped `throw`; fallible functions return discriminated unions;
-- union switches use an `assertNever(x: never): never` default branch;
-- schema files contain Zod boundary definitions only;
+- finite termination bounds for recursive schemas;
+- no untyped domain `throw`; use discriminated-union results;
+- exhaustive union switches with `assertNever(x: never): never`;
+- schema files contain boundary definitions only;
 - type files contain data contracts only.
 
 ## Toolchain Gates
 
 Required commands:
-- install: `npm ci` (or `pnpm install --frozen-lockfile` after human-approved
-  package-manager change);
+- install: `npm ci` (or human-approved `pnpm install --frozen-lockfile`);
 - build: `npm run build`;
 - lint: `npm run lint`;
 - typecheck: `npm run typecheck`;
 - test: `npm run test`;
 - format: `npm run format:check`.
 
-A green command is evidence only for the gate it executes. It does not confer
-completion authority.
+Use non-interactive flags. Deterministic decisions may not depend on wall-clock
+time, randomness, filesystem enumeration order, or remote timing. A green
+command proves only its own gate and never confers completion authority.
