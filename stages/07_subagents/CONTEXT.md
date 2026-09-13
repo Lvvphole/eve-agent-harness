@@ -1,8 +1,8 @@
-# Stage 07_subagents: Bounded Subagents
+# Route 07_subagents: Bounded Subagents
 
 ## Repository Access
 
-The only repository path authority for this stage is
+The only repository path authority for this route is
 `../../references/routes/07_subagents.json` under `../../references/routing-policy.md`.
 Do not infer read, grep, or write permission from prose. Any unlisted path is
 `BLOCKED`.
