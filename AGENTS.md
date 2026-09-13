@@ -60,12 +60,13 @@ machine receipts defined in `references/verification-policy.md`.
 
 ## Security
 
-Follow `references/security-boundaries.md`.
+Supervisor-repository path access is exact and default-deny under
+`references/routing-policy.md`. Target-workpiece capabilities are a separate
+additional boundary under `references/security-boundaries.md`; they never
+expand repository access.
 
 Workers never access supervisor secrets/state, target Git metadata/workflows,
-host volumes, Docker socket, or unauthorized target paths. SCOUT is read-only;
-PLAN may emit only `.proposals/*.json`; IMPLEMENT requires `PRE_CODE_READY`
-and is limited to authorized candidate paths and sandboxed tools.
+host volumes, Docker socket, or paths outside exact active authority.
 
 ## Completion
 
