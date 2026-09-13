@@ -1,15 +1,5 @@
 {
   "schema_version": 1,
-  "stage_ids": [
-    "00_bootstrap",
-    "01_readiness",
-    "02_compiler",
-    "03_workspace",
-    "04_sandbox",
-    "05_exporter",
-    "06_persistence",
-    "07_subagents"
-  ],
   "denied_prefixes": [
     ".git",
     ".github",
@@ -26,5 +16,15 @@
   "missing_stage_decision": "BLOCKED",
   "unknown_stage_decision": "BLOCKED",
   "unscoped_grep_decision": "BLOCKED",
-  "protected_write_authorization_field": "human_authorized_protected_paths"
+  "protected_write_authorization_field": "human_authorized_protected_paths",
+  "route_ids": [
+    "00_bootstrap",
+    "01_readiness",
+    "02_compiler",
+    "03_workspace",
+    "04_sandbox",
+    "05_exporter",
+    "06_persistence",
+    "07_subagents"
+  ]
 }
