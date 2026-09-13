@@ -33,5 +33,6 @@
     "src/schemas/workspace.ts",
     "tests/workspace.test.ts",
     "src/engine/workspace.ts"
-  ]
+  ],
+  "protected_write_exact": []
 }
