@@ -1,8 +1,8 @@
-# Stage 04_sandbox: Sandbox and Tool Confinement
+# Route 04_sandbox: Sandbox and Tool Confinement
 
 ## Repository Access
 
-The only repository path authority for this stage is
+The only repository path authority for this route is
 `../../references/routes/04_sandbox.json` under `../../references/routing-policy.md`.
 Do not infer read, grep, or write permission from prose. Any unlisted path is
 `BLOCKED`.
