@@ -1,8 +1,8 @@
-# Stage 02_compiler: Proposal Compiler and Sealing
+# Route 02_compiler: Proposal Compiler and Sealing
 
 ## Repository Access
 
-The only repository path authority for this stage is
+The only repository path authority for this route is
 `../../references/routes/02_compiler.json` under `../../references/routing-policy.md`.
 Do not infer read, grep, or write permission from prose. Any unlisted path is
 `BLOCKED`.
