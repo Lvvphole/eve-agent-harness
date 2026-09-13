@@ -3,6 +3,7 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   {
     ignores: [
+      'eslint.config.mjs',
       'dist/**',
       'node_modules/**',
       '.scratch/**',
@@ -30,7 +31,13 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-argument': 'error',
       '@typescript-eslint/no-unsafe-call': 'error',
       '@typescript-eslint/no-unsafe-member-access': 'error',
-      '@typescript-eslint/no-unsafe-return': 'error'
+      '@typescript-eslint/no-unsafe-return': 'error',
+    },
+  },
+  {
+    files: ['tests/**/*.ts'],
+    rules: {
+      '@typescript-eslint/consistent-type-assertions': 'off',
     },
   },
 );
