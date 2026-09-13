@@ -22,7 +22,7 @@ Do not infer read, grep, or write permission from prose. Any unlisted path is
 
 1. Maintain the root instruction/router hierarchy.
 2. Configure the strict TypeScript/Zod/Vitest toolchain.
-3. Preserve the < 200 LOC delivery bound.
+3. Keep Phase 0 configuration files below 150 LOC; exclude auto-generated `package-lock.json` from that ceiling.
 4. Do not create Stage B engine behavior, signing keys, or production credentials.
 
 ## Outputs
@@ -54,6 +54,7 @@ Do not infer read, grep, or write permission from prose. Any unlisted path is
 - `stages/06_persistence/CONTEXT.md`
 - `stages/07_subagents/CONTEXT.md`
 - `package.json`
+- `package-lock.json`
 - `tsconfig.json`
 - `vitest.config.ts`
 - `eslint.config.mjs`

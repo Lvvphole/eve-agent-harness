@@ -34,7 +34,8 @@
     "references/routes/05_exporter.json",
     "references/routes/06_persistence.json",
     "references/routes/07_subagents.json",
-    "references/implementation-plan-v1.0.md"
+    "references/implementation-plan-v1.0.md",
+    "package-lock.json"
   ],
   "grep_exact": [
     "AGENTS.md",
@@ -65,7 +66,8 @@
     "eslint.config.mjs",
     ".prettierrc.json",
     ".prettierignore",
-    ".gitignore"
+    ".gitignore",
+    "package-lock.json"
   ],
   "protected_write_exact": [
     "AGENTS.md",
