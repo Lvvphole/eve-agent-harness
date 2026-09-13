@@ -47,5 +47,6 @@
     "src/schemas/routing.ts",
     "tests/routing.test.ts",
     "src/engine/routing.ts"
-  ]
+  ],
+  "protected_write_exact": []
 }
