@@ -2,35 +2,27 @@
 
 ## Inputs
 
-- Layer 0: `../../AGENTS.md`
-- Layer 1: `../../CONTEXT.md`
 - Layer 3: `../../references/engineering-rules.md`
+- Layer 3: `../../references/security-boundaries.md`
+- Layer 3: `../../references/verification-policy.md`
 - Layer 3: `../../references/proposal-contract.md`
-- Layer 4: schema-valid proposal bytes and frozen source identity
+- Layer 4: proposal bytes and frozen source identity
 
 ## Process
 
 1. Stage A: define proposal/DAG types and strict schemas.
-2. Stage C: falsify cycles, span breaches, dangling references, malformed
-   lowering rules, canonical-byte mutation, and signature tampering.
-3. Freeze the oracle and capture intended red evidence.
-4. Stage B: implement span checking, deterministic lowering/topological sort,
-   canonical JSON, SHA-256, and supervisor-only Ed25519 sealing.
-5. Never expose private signing material to an agent.
+2. Stage C: falsify cycles, span breaches, dangling references, lowering
+   mutations, canonical-byte changes, and signature tampering.
+3. Stage B: implement span checks, deterministic DAG lowering, canonical JSON,
+   SHA-256, and supervisor-only Ed25519 sealing.
 
 ## Outputs
 
-- `src/types/proposals.ts`
-- `src/types/dag.ts`
-- `src/schemas/proposals.ts`
-- `src/schemas/dag.ts`
-- `tests/compiler.test.ts`
-- `src/engine/span-checker.ts`
-- `src/engine/compiler.ts`
-- `src/engine/sealer.ts`
-- canonical `dag.json` and detached `dag.sig`
+- proposal/DAG types and schemas;
+- compiler adversarial oracle;
+- span checker, compiler, and sealer;
+- canonical `dag.json` + detached `dag.sig`.
 
 ## Exit
 
-A valid supervisor signature and all pre-code predicates are required before
-`PRE_CODE_READY`.
+`PRE_CODE_READY` requires every pre-code predicate and signature gate to pass.
