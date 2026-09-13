@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "read_exact": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CONTEXT.md",
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "references/routes/global.json",
+    "stages/07_subagents/CONTEXT.md",
+    "references/routes/07_subagents.json",
+    "src/types/subagents.ts",
+    "src/schemas/subagents.ts",
+    "tests/subagents.test.ts",
+    "src/engine/subagents.ts"
+  ],
+  "grep_exact": [
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "stages/07_subagents/CONTEXT.md",
+    "src/types/subagents.ts",
+    "src/schemas/subagents.ts",
+    "tests/subagents.test.ts",
+    "src/engine/subagents.ts"
+  ],
+  "write_exact": [
+    "src/types/subagents.ts",
+    "src/schemas/subagents.ts",
+    "tests/subagents.test.ts",
+    "src/engine/subagents.ts"
+  ],
+  "protected_write_exact": [],
+  "route_id": "07_subagents"
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "read_exact": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CONTEXT.md",
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "references/routes/global.json",
+    "stages/03_workspace/CONTEXT.md",
+    "references/routes/03_workspace.json",
+    "src/types/workspace.ts",
+    "src/schemas/workspace.ts",
+    "tests/workspace.test.ts",
+    "src/engine/workspace.ts"
+  ],
+  "grep_exact": [
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "stages/03_workspace/CONTEXT.md",
+    "src/types/workspace.ts",
+    "src/schemas/workspace.ts",
+    "tests/workspace.test.ts",
+    "src/engine/workspace.ts"
+  ],
+  "write_exact": [
+    "src/types/workspace.ts",
+    "src/schemas/workspace.ts",
+    "tests/workspace.test.ts",
+    "src/engine/workspace.ts"
+  ],
+  "protected_write_exact": [],
+  "route_id": "03_workspace"
+}

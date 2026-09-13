@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "read_exact": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CONTEXT.md",
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "references/routes/global.json",
+    "stages/06_persistence/CONTEXT.md",
+    "references/routes/06_persistence.json",
+    "src/types/persistence.ts",
+    "src/schemas/persistence.ts",
+    "tests/persistence.test.ts",
+    "src/engine/persistence.ts"
+  ],
+  "grep_exact": [
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "stages/06_persistence/CONTEXT.md",
+    "src/types/persistence.ts",
+    "src/schemas/persistence.ts",
+    "tests/persistence.test.ts",
+    "src/engine/persistence.ts"
+  ],
+  "write_exact": [
+    "src/types/persistence.ts",
+    "src/schemas/persistence.ts",
+    "tests/persistence.test.ts",
+    "src/engine/persistence.ts"
+  ],
+  "protected_write_exact": [],
+  "route_id": "06_persistence"
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "read_exact": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CONTEXT.md",
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "references/routes/global.json",
+    "stages/05_exporter/CONTEXT.md",
+    "references/routes/05_exporter.json",
+    "src/types/exporter.ts",
+    "src/schemas/exporter.ts",
+    "tests/exporter.test.ts",
+    "src/engine/exporter.ts"
+  ],
+  "grep_exact": [
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "stages/05_exporter/CONTEXT.md",
+    "src/types/exporter.ts",
+    "src/schemas/exporter.ts",
+    "tests/exporter.test.ts",
+    "src/engine/exporter.ts"
+  ],
+  "write_exact": [
+    "src/types/exporter.ts",
+    "src/schemas/exporter.ts",
+    "tests/exporter.test.ts",
+    "src/engine/exporter.ts"
+  ],
+  "protected_write_exact": [],
+  "route_id": "05_exporter"
+}

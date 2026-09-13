@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "read_exact": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CONTEXT.md",
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "references/routes/global.json",
+    "references/proposal-contract.md",
+    "stages/01_readiness/CONTEXT.md",
+    "references/routes/01_readiness.json",
+    "src/types/readiness.ts",
+    "src/schemas/readiness.ts",
+    "tests/readiness.test.ts",
+    "src/engine/readiness.ts",
+    "src/types/routing.ts",
+    "src/schemas/routing.ts",
+    "tests/routing.test.ts",
+    "src/engine/routing.ts"
+  ],
+  "grep_exact": [
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "references/proposal-contract.md",
+    "stages/01_readiness/CONTEXT.md",
+    "src/types/readiness.ts",
+    "src/schemas/readiness.ts",
+    "tests/readiness.test.ts",
+    "src/engine/readiness.ts",
+    "src/types/routing.ts",
+    "src/schemas/routing.ts",
+    "tests/routing.test.ts",
+    "src/engine/routing.ts"
+  ],
+  "write_exact": [
+    "src/types/readiness.ts",
+    "src/schemas/readiness.ts",
+    "tests/readiness.test.ts",
+    "src/engine/readiness.ts",
+    "src/types/routing.ts",
+    "src/schemas/routing.ts",
+    "tests/routing.test.ts",
+    "src/engine/routing.ts"
+  ],
+  "protected_write_exact": [],
+  "route_id": "01_readiness"
+}

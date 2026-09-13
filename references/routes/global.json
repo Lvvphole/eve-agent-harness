@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "denied_prefixes": [
+    ".git",
+    ".github",
+    ".harness",
+    ".scratch",
+    "logs",
+    "node_modules",
+    "dist",
+    "coverage",
+    ".env"
+  ],
+  "default_decision": "BLOCKED",
+  "ambiguous_match_decision": "BLOCKED",
+  "unscoped_grep_decision": "BLOCKED",
+  "protected_write_authorization_field": "human_authorized_protected_paths",
+  "route_ids": [
+    "00_bootstrap",
+    "01_readiness",
+    "02_compiler",
+    "03_workspace",
+    "04_sandbox",
+    "05_exporter",
+    "06_persistence",
+    "07_subagents"
+  ],
+  "missing_route_decision": "BLOCKED",
+  "unknown_route_decision": "BLOCKED"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "eve-agent-harness",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0 <25"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --max-warnings=0 && npm run lint:routing && npm run lint:ast",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint:ast": "node -e \"process.stderr.write('AST gate unavailable: Stage A-C-B lint increment not implemented\\n'); process.exit(1)\"",
+    "lint:routing": "node -e \"process.stderr.write('Routing gate unavailable: repository read/grep/write remain BLOCKED until Stage A-C-B validator is implemented\\\\n'); process.exit(1)\""
+  },
+  "dependencies": {
+    "zod": "4.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.2",
+    "eslint": "10.10.0",
+    "prettier": "3.9.6",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.70.0",
+    "vitest": "5.0.0"
+  }
+}
