@@ -2,30 +2,26 @@
 
 ## Inputs
 
-- Layer 0: `../../AGENTS.md`
-- Layer 1: `../../CONTEXT.md`
 - Layer 3: `../../references/engineering-rules.md`
+- Layer 3: `../../references/security-boundaries.md`
+- Layer 3: `../../references/verification-policy.md`
 - Layer 4: deterministic supervisor events and previous ledger head
 
 ## Process
 
-1. Stage A: define append-only event, hash-chain, replay, and remote-row schemas.
-2. Stage C: falsify mutation, deletion, reorder, duplicate sequence, forged
-   previous hash, truncation, and nondeterministic replay.
-3. Freeze the oracle and capture intended red evidence.
-4. Stage B: canonicalize, hash, append, flush/fsync locally before state is
-   visible.
-5. Replicate to Supabase asynchronously and idempotently. Remote failure cannot
-   block or overrule the local deterministic control plane.
+1. Stage A: define event, hash-chain, replay, and remote-row contracts.
+2. Stage C: falsify mutation, deletion, reorder, forged linkage, truncation, and
+   nondeterministic replay.
+3. Stage B: append/fsync locally before state visibility; replicate to Supabase
+   asynchronously and idempotently.
 
 ## Outputs
 
-- `src/types/persistence.ts`
-- `src/schemas/persistence.ts`
-- `tests/persistence.test.ts`
-- `src/engine/persistence.ts`
-- append-only local JSONL ledger and ledger-head receipt
+- persistence types/schema;
+- persistence adversarial oracle;
+- persistence engine;
+- append-only JSONL ledger and ledger-head receipt.
 
 ## Exit
 
-Production Supabase migrations and credentials remain human-exclusive.
+Remote persistence never becomes control-plane authority.
