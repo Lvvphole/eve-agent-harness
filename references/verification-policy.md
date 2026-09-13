@@ -44,6 +44,9 @@ classes.
 
 ## Required evidence
 
+These are supervisor evidence identities, not agent repository-write authority.
+Any repository path operation still requires the active exact route ALLOW.
+
 - `trace_red.log`: intended Stage C failure before Stage B.
 - `trace_green.log`: frozen Stage C oracle passing after Stage B.
 - `tree_hash.receipt`: deterministic SHA-256 workpiece manifest.
