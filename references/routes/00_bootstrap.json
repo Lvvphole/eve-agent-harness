@@ -58,6 +58,15 @@
     "stages/07_subagents/CONTEXT.md"
   ],
   "write_exact": [
+    "package.json",
+    "tsconfig.json",
+    "vitest.config.ts",
+    "eslint.config.mjs",
+    ".prettierrc.json",
+    ".prettierignore",
+    ".gitignore"
+  ],
+  "protected_write_exact": [
     "AGENTS.md",
     "CLAUDE.md",
     "CONTEXT.md",
@@ -82,13 +91,6 @@
     "stages/04_sandbox/CONTEXT.md",
     "stages/05_exporter/CONTEXT.md",
     "stages/06_persistence/CONTEXT.md",
-    "stages/07_subagents/CONTEXT.md",
-    "package.json",
-    "tsconfig.json",
-    "vitest.config.ts",
-    "eslint.config.mjs",
-    ".prettierrc.json",
-    ".prettierignore",
-    ".gitignore"
+    "stages/07_subagents/CONTEXT.md"
   ]
 }
