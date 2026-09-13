@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "stage_ids": [
+    "00_bootstrap",
+    "01_readiness",
+    "02_compiler",
+    "03_workspace",
+    "04_sandbox",
+    "05_exporter",
+    "06_persistence",
+    "07_subagents"
+  ],
+  "denied_prefixes": [
+    ".git",
+    ".github",
+    ".harness",
+    ".scratch",
+    "logs",
+    "node_modules",
+    "dist",
+    "coverage",
+    ".env"
+  ],
+  "default_decision": "BLOCKED",
+  "ambiguous_match_decision": "BLOCKED",
+  "missing_stage_decision": "BLOCKED",
+  "unknown_stage_decision": "BLOCKED",
+  "unscoped_grep_decision": "BLOCKED"
+}
