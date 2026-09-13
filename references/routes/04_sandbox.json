@@ -38,5 +38,6 @@
     "tests/sandbox.test.ts",
     "src/engine/sandbox.ts",
     "src/engine/tool-manager.ts"
-  ]
+  ],
+  "protected_write_exact": []
 }
