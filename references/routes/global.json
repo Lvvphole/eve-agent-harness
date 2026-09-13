@@ -13,8 +13,6 @@
   ],
   "default_decision": "BLOCKED",
   "ambiguous_match_decision": "BLOCKED",
-  "missing_stage_decision": "BLOCKED",
-  "unknown_stage_decision": "BLOCKED",
   "unscoped_grep_decision": "BLOCKED",
   "protected_write_authorization_field": "human_authorized_protected_paths",
   "route_ids": [
@@ -26,5 +24,7 @@
     "05_exporter",
     "06_persistence",
     "07_subagents"
-  ]
+  ],
+  "missing_route_decision": "BLOCKED",
+  "unknown_route_decision": "BLOCKED"
 }
