@@ -5,7 +5,7 @@ This policy governs every agent-initiated repository `read`, `grep`, and
 
 ## Stage identity
 
-The supervisor supplies exactly one `stage_id` in the TaskEnvelope. The agent
+The supervisor supplies exactly one `route_id` in the TaskEnvelope. The agent
 must not infer or change it. Root `CONTEXT.md` maps that exact ID to one stage
 contract.
 
@@ -16,7 +16,7 @@ Missing, unknown, or conflicting stage identity is `BLOCKED`.
 The active stage loads:
 
 - `references/routes/global.json`
-- `references/routes/<stage_id>.json`
+- `references/routes/<route_id>.json`
 
 All repository paths are canonical relative POSIX paths. No path is normalized
 into acceptance.
