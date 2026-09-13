@@ -1,6 +1,5 @@
 {
   "schema_version": 1,
-  "stage_id": "07_subagents",
   "read_exact": [
     "AGENTS.md",
     "CLAUDE.md",
@@ -34,5 +33,6 @@
     "tests/subagents.test.ts",
     "src/engine/subagents.ts"
   ],
-  "protected_write_exact": []
+  "protected_write_exact": [],
+  "route_id": "07_subagents"
 }
