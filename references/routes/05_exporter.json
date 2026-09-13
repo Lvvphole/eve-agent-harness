@@ -33,5 +33,6 @@
     "src/schemas/exporter.ts",
     "tests/exporter.test.ts",
     "src/engine/exporter.ts"
-  ]
+  ],
+  "protected_write_exact": []
 }
