@@ -1,4 +1,11 @@
-# Stage 01: Readiness
+# Stage 01_readiness: Readiness
+
+## Repository Access
+
+The only repository path authority for this stage is
+`../../references/routes/01_readiness.json` under `../../references/routing-policy.md`.
+Do not infer read, grep, or write permission from prose. Any unlisted path is
+`BLOCKED`.
 
 ## Inputs
 
@@ -9,15 +16,15 @@
 - Layer 3: `../../references/security-boundaries.md`
 - Layer 3: `../../references/verification-policy.md`
 - Layer 3: `../../references/proposal-contract.md`
-- Layer 4: human-authorized TaskEnvelope and frozen target source identity
+- Layer 4: human-authorized TaskEnvelope
+- Layer 4: frozen target source identity
 
 ## Process
 
-1. Stage A: define readiness types and strict schemas.
-2. Stage C: falsify forged authority, missing roots, stale source identity, and
-   unauthorized transitions; freeze the red oracle.
-3. Stage B: implement the pure readiness evaluator.
-4. Capture green evidence only against the frozen oracle.
+1. Stage A: define readiness/routing types and strict schemas.
+2. Stage C: falsify forged authority, ambiguous/missing routes, stale source identity, unauthorized transitions, and unauthorized repository operations; freeze the red oracle.
+3. Stage B: implement pure readiness and repository-operation authorization.
+4. Capture green evidence only against frozen oracles.
 
 ## Outputs
 
@@ -25,8 +32,11 @@
 - `src/schemas/readiness.ts`
 - `tests/readiness.test.ts`
 - `src/engine/readiness.ts`
-- red/green machine evidence
+- `src/types/routing.ts`
+- `src/schemas/routing.ts`
+- `tests/routing.test.ts`
+- `src/engine/routing.ts`
 
 ## Exit
 
-Route to Stage 02 only after the readiness gate succeeds.
+Route to `02_compiler` only after readiness and routing gates succeed.
