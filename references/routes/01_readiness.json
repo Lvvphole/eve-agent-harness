@@ -1,6 +1,5 @@
 {
   "schema_version": 1,
-  "stage_id": "01_readiness",
   "read_exact": [
     "AGENTS.md",
     "CLAUDE.md",
@@ -48,5 +47,6 @@
     "tests/routing.test.ts",
     "src/engine/routing.ts"
   ],
-  "protected_write_exact": []
+  "protected_write_exact": [],
+  "route_id": "01_readiness"
 }
