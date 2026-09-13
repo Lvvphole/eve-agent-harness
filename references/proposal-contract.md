@@ -14,17 +14,7 @@ target-workpiece execution plane. This does not grant write authority in the
 
 A PLAN proposal path must match exactly:
 
-`^\.proposals\/[A-Za-z0-9][A-Za-z0-9._-]{0,127}\.json# Proposal Contract
-
-## Status
-
-This file is authoritative human-owned governance. It defines the constraints
-for future Stage A proposal schemas. It does not itself authorize PLAN or
-IMPLEMENT execution.
-
-## Boundary
-
-
+`^\.proposals\/[A-Za-z0-9][A-Za-z0-9._-]{0,127}\.json$`
 
 Subdirectories, alternate extensions, path normalization, and additional writes
 are rejected. The supervisor unlinks the staged file immediately after reading
