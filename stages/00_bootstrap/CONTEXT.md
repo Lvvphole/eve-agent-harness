@@ -12,6 +12,7 @@ Do not infer read, grep, or write permission from prose. Any unlisted path is
 - Layer 3: `../../references/routing-policy.md`
 - Layer 3: `../../references/routes/global.json`
 - Layer 3: `../../references/routes/00_bootstrap.json`
+- Layer 3: `../../references/implementation-plan-v1.0.md`
 - Layer 3: `../../references/engineering-rules.md`
 - Layer 3: `../../references/security-boundaries.md`
 - Layer 3: `../../references/verification-policy.md`
@@ -30,6 +31,7 @@ Do not infer read, grep, or write permission from prose. Any unlisted path is
 - `CLAUDE.md`
 - `CONTEXT.md`
 - `references/engineering-rules.md`
+- `references/implementation-plan-v1.0.md`
 - `references/proposal-contract.md`
 - `references/routing-policy.md`
 - `references/security-boundaries.md`
