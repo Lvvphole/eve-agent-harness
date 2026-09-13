@@ -6,6 +6,7 @@ export default defineConfig({
     environment: 'node',
     include: ['tests/**/*.test.ts'],
     mockReset: true,
+    passWithNoTests: true,
     restoreMocks: true,
     sequence: {concurrent: false},
   },
