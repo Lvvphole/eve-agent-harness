@@ -45,7 +45,7 @@ implemented. Agents must not invent fields before that increment.
 
 ## Path Rules
 
-Every repository path must be canonical and relative. Reject paths containing:
+Every proposed target-workpiece path must be canonical and relative. Reject paths containing:
 - an absolute root;
 - a drive prefix;
 - NUL;
