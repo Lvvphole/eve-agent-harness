@@ -9,7 +9,7 @@ acceptance, protected-state, or merge authority.
 ## Instruction loading
 
 - `CLAUDE.md` contains exactly `@AGENTS.md`.
-- Read root `CONTEXT.md`; the supervisor-supplied `stage_id` selects exactly one stage.
+- Read root `CONTEXT.md`; the supervisor-supplied `route_id` selects exactly one context route.
 - Never infer a stage from prose. Load only context named by the selected stage.
 - Repository `read`, `grep`, and `write` operations are default-deny under `references/routing-policy.md`.
 - Nested `AGENTS.md` files are forbidden.
