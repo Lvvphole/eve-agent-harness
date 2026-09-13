@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+.proposals/
+.scratch/
+logs/
+.harness/ed25519.key
+.env
+.env.*
+!.env.example
