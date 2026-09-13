@@ -1,8 +1,8 @@
-# Stage 05_exporter: Verification and Candidate Export
+# Route 05_exporter: Verification and Candidate Export
 
 ## Repository Access
 
-The only repository path authority for this stage is
+The only repository path authority for this route is
 `../../references/routes/05_exporter.json` under `../../references/routing-policy.md`.
 Do not infer read, grep, or write permission from prose. Any unlisted path is
 `BLOCKED`.
