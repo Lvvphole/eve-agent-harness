@@ -9,9 +9,10 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "format:check": "prettier --check .",
-    "lint": "eslint . --max-warnings=0",
+    "lint": "eslint . --max-warnings=0 && npm run lint:ast",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint:ast": "node -e \"process.stderr.write('AST gate unavailable: Stage A-C-B lint increment not implemented\\n'); process.exit(1)\""
   },
   "dependencies": {
     "zod": "4.6.2"
