@@ -47,5 +47,6 @@
     "src/engine/span-checker.ts",
     "src/engine/compiler.ts",
     "src/engine/sealer.ts"
-  ]
+  ],
+  "protected_write_exact": []
 }
