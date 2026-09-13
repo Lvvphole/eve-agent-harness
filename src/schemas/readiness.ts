@@ -1,4 +1,4 @@
-import {z} from 'zod';
+import { z } from 'zod';
 
 export const ReadinessStateSchema = z.enum([
   'UNBOUND',
@@ -19,11 +19,13 @@ export const ReadinessStateSchema = z.enum([
 export const ExecutionModeSchema = z.enum(['SCOUT', 'PLAN', 'IMPLEMENT']);
 
 export const HexSha256Schema = z.string().regex(/^[0-9a-f]{64}$/);
+
 export const HexSha1Schema = z.string().regex(/^[0-9a-f]{40}$/);
+
 export const CanonicalRelativePathSchema = z
   .string()
   .regex(
-    /^(?![/\\])(?!.*(?:^|/)\.\.?(?:/|$))(?!.*//)[a-zA-Z0-9_.-]+(?:/[a-zA-Z0-9_.-]+)*$/,
+    /^(?![\/\\])(?!.*(?:^|\/)\.\.?(?:\/|$))(?!.*\/\/)[a-zA-Z0-9_.-]+(?:\/[a-zA-Z0-9_.-]+)*$/
   );
 
 export const AuthorityBindingSchema = z
