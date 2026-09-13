@@ -25,5 +25,6 @@
   "ambiguous_match_decision": "BLOCKED",
   "missing_stage_decision": "BLOCKED",
   "unknown_stage_decision": "BLOCKED",
-  "unscoped_grep_decision": "BLOCKED"
+  "unscoped_grep_decision": "BLOCKED",
+  "protected_write_authorization_field": "human_authorized_protected_paths"
 }
