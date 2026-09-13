@@ -1,8 +1,8 @@
-# Stage 06_persistence: Local-First Persistence
+# Route 06_persistence: Local-First Persistence
 
 ## Repository Access
 
-The only repository path authority for this stage is
+The only repository path authority for this route is
 `../../references/routes/06_persistence.json` under `../../references/routing-policy.md`.
 Do not infer read, grep, or write permission from prose. Any unlisted path is
 `BLOCKED`.
