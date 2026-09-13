@@ -6,14 +6,14 @@ This policy governs every agent-initiated repository `read`, `grep`, and
 ## Stage identity
 
 The supervisor supplies exactly one `route_id` in the TaskEnvelope. The agent
-must not infer or change it. Root `CONTEXT.md` maps that exact ID to one stage
+must not infer or change it. Root `CONTEXT.md` maps that exact ID to one context
 contract.
 
 Missing, unknown, or conflicting stage identity is `BLOCKED`.
 
 ## Path authorization
 
-The active stage loads:
+The active route loads:
 
 - `references/routes/global.json`
 - `references/routes/<route_id>.json`
@@ -58,7 +58,7 @@ outputs is blocked unless exactly authorized.
 
 `references/routes/global.json` denies supervisor state, Git metadata,
 workflows, runtime state, dependencies/build output, and secrets before any
-stage allow rule. A stage cannot override a global denial.
+stage allow rule. A route cannot override a global denial.
 
 ## Two execution planes
 
