@@ -33,5 +33,6 @@
     "src/schemas/subagents.ts",
     "tests/subagents.test.ts",
     "src/engine/subagents.ts"
-  ]
+  ],
+  "protected_write_exact": []
 }
