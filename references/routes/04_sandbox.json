@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "stage_id": "04_sandbox",
+  "read_exact": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CONTEXT.md",
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "references/routes/global.json",
+    "stages/04_sandbox/CONTEXT.md",
+    "references/routes/04_sandbox.json",
+    "src/types/sandbox.ts",
+    "src/schemas/sandbox.ts",
+    "tests/sandbox.test.ts",
+    "src/engine/sandbox.ts",
+    "src/engine/tool-manager.ts",
+    "src/engine/routing.ts"
+  ],
+  "grep_exact": [
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "stages/04_sandbox/CONTEXT.md",
+    "src/types/sandbox.ts",
+    "src/schemas/sandbox.ts",
+    "tests/sandbox.test.ts",
+    "src/engine/sandbox.ts",
+    "src/engine/tool-manager.ts",
+    "src/engine/routing.ts"
+  ],
+  "write_exact": [
+    "src/types/sandbox.ts",
+    "src/schemas/sandbox.ts",
+    "tests/sandbox.test.ts",
+    "src/engine/sandbox.ts",
+    "src/engine/tool-manager.ts"
+  ]
+}
