@@ -1,5 +1,14 @@
 # Security Boundaries
 
+## Permission planes
+
+Supervisor-repository path access is controlled only by
+`references/routing-policy.md` plus the active exact route file. Mode
+capability below is necessary but never sufficient for repository access.
+
+Target-workpiece access is separately constrained by the TaskEnvelope and
+sandbox. Permission in one plane never grants permission in the other.
+
 ## Human-only authority
 
 Only the human operator may:
