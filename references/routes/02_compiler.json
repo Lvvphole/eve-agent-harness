@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "stage_id": "02_compiler",
+  "read_exact": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CONTEXT.md",
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "references/routes/global.json",
+    "references/proposal-contract.md",
+    "stages/02_compiler/CONTEXT.md",
+    "references/routes/02_compiler.json",
+    "src/types/proposals.ts",
+    "src/types/dag.ts",
+    "src/schemas/proposals.ts",
+    "src/schemas/dag.ts",
+    "tests/compiler.test.ts",
+    "src/engine/span-checker.ts",
+    "src/engine/compiler.ts",
+    "src/engine/sealer.ts"
+  ],
+  "grep_exact": [
+    "references/engineering-rules.md",
+    "references/routing-policy.md",
+    "references/security-boundaries.md",
+    "references/verification-policy.md",
+    "references/proposal-contract.md",
+    "stages/02_compiler/CONTEXT.md",
+    "src/types/proposals.ts",
+    "src/types/dag.ts",
+    "src/schemas/proposals.ts",
+    "src/schemas/dag.ts",
+    "tests/compiler.test.ts",
+    "src/engine/span-checker.ts",
+    "src/engine/compiler.ts",
+    "src/engine/sealer.ts"
+  ],
+  "write_exact": [
+    "src/types/proposals.ts",
+    "src/types/dag.ts",
+    "src/schemas/proposals.ts",
+    "src/schemas/dag.ts",
+    "tests/compiler.test.ts",
+    "src/engine/span-checker.ts",
+    "src/engine/compiler.ts",
+    "src/engine/sealer.ts"
+  ]
+}
