@@ -1,23 +1,29 @@
 # Workspace Router
 
-Load context in this order:
+The supervisor must supply exactly one `stage_id` in the TaskEnvelope. Agents
+must not infer, select, or change the stage from task prose.
+
+| stage_id | Stage contract |
+|---|---|
+| `00_bootstrap` | `stages/00_bootstrap/CONTEXT.md` |
+| `01_readiness` | `stages/01_readiness/CONTEXT.md` |
+| `02_compiler` | `stages/02_compiler/CONTEXT.md` |
+| `03_workspace` | `stages/03_workspace/CONTEXT.md` |
+| `04_sandbox` | `stages/04_sandbox/CONTEXT.md` |
+| `05_exporter` | `stages/05_exporter/CONTEXT.md` |
+| `06_persistence` | `stages/06_persistence/CONTEXT.md` |
+| `07_subagents` | `stages/07_subagents/CONTEXT.md` |
+
+Load order:
 
 1. `CLAUDE.md` -> `@AGENTS.md`.
 2. This file.
-3. Exactly one matching stage `CONTEXT.md`.
-4. Only the Layer 3 references listed by that stage.
-5. Only the Layer 4 working artifacts listed by that stage.
+3. The exact stage contract mapped from `stage_id`.
+4. Only references and working artifacts named by that stage.
 
-| Task | Stage |
-|---|---|
-| Governance, repository bootstrap, package/toolchain configuration | `stages/00_bootstrap/CONTEXT.md` |
-| Authority binding, TaskEnvelope, readiness states, mode routing | `stages/01_readiness/CONTEXT.md` |
-| Proposals, spans, lowering, DAG compilation, sealing | `stages/02_compiler/CONTEXT.md` |
-| Source snapshot, scrub rules, symlinks, tree receipts | `stages/03_workspace/CONTEXT.md` |
-| Container isolation, network/tool controls, revocation | `stages/04_sandbox/CONTEXT.md` |
-| Diff bounds, verification, candidate export | `stages/05_exporter/CONTEXT.md` |
-| Local ledger, replay, tamper detection, Supabase replication | `stages/06_persistence/CONTEXT.md` |
-| Subagent context, recursion, observation reduction | `stages/07_subagents/CONTEXT.md` |
+If `stage_id` is absent, unknown, or conflicts with the loaded stage, stop as
+`BLOCKED`.
 
-If no row matches, stop as `BLOCKED`. Do not invent a stage or load unrelated
-references, proposals, logs, or supervisor state.
+Every repository `read`, `grep`, or `write` is separately authorized by
+`references/routing-policy.md` and the active stage route file. Unlisted paths
+are `BLOCKED`.
