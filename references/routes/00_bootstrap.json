@@ -1,6 +1,5 @@
 {
   "schema_version": 1,
-  "stage_id": "00_bootstrap",
   "read_exact": [
     "README.md",
     "AGENTS.md",
@@ -92,5 +91,6 @@
     "stages/05_exporter/CONTEXT.md",
     "stages/06_persistence/CONTEXT.md",
     "stages/07_subagents/CONTEXT.md"
-  ]
+  ],
+  "route_id": "00_bootstrap"
 }
