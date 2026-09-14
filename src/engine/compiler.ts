@@ -11,17 +11,21 @@ export interface CompileDagInput {
   readonly proposals: readonly unknown[];
 }
 
-export function compileDag(_input: CompileDagInput): DagValidationResult {
+export function compileDag(input: CompileDagInput): DagValidationResult {
+  void input;
   throw new Error('Not implemented');
 }
 
 export function sealDag(
-  _dag: CompiledDag,
-  _privateKeyHex: string,
+  dag: CompiledDag,
+  privateKeyHex: string,
 ): SealedDagArtifact {
+  void dag;
+  void privateKeyHex;
   throw new Error('Not implemented');
 }
 
-export function verifySealedDag(_artifact: SealedDagArtifact): boolean {
+export function verifySealedDag(artifact: SealedDagArtifact): boolean {
+  void artifact;
   throw new Error('Not implemented');
 }
