@@ -19,14 +19,17 @@ export const dagNodeSchema = z
     op_type: z.enum(['insert', 'replace', 'delete']),
     span: textSpanSchema,
     payload: z.string(),
-    dependencies: z.array(
-      z
-        .string()
-        .min(1)
-        .regex(/^[a-zA-Z0-9_.-]+$/),
-    ),
+    dependencies: z
+      .array(
+        z
+          .string()
+          .min(1)
+          .regex(/^[a-zA-Z0-9_.-]+$/),
+      )
+      .readonly(),
   })
-  .strict();
+  .strict()
+  .readonly();
 
 export const compiledDagSchema = z
   .object({
@@ -44,10 +47,12 @@ export const compiledDagSchema = z
           .min(1)
           .regex(/^[a-zA-Z0-9_.-]+$/),
       )
-      .nonempty(),
-    nodes: z.array(dagNodeSchema).nonempty(),
+      .nonempty()
+      .readonly(),
+    nodes: z.array(dagNodeSchema).nonempty().readonly(),
   })
   .strict()
+  .readonly()
   .refine(
     (dag) => {
       const nodeIds = dag.nodes.map((n) => n.id);
@@ -61,8 +66,10 @@ export const compiledDagSchema = z
   .refine(
     (dag) => {
       const nodeIds = new Set(dag.nodes.map((n) => n.id));
+      const orderSet = new Set(dag.execution_order);
       return (
-        dag.execution_order.length === nodeIds.size &&
+        orderSet.size === dag.execution_order.length &&
+        orderSet.size === nodeIds.size &&
         dag.execution_order.every((id) => nodeIds.has(id))
       );
     },
@@ -98,7 +105,8 @@ export const sealedDagArtifactSchema = z
     signature_hex: z.string().regex(ED25519_HEX_SIG_REGEX),
     signer_public_key: z.string().regex(ED25519_HEX_PUBKEY_REGEX),
   })
-  .strict();
+  .strict()
+  .readonly();
 
 export type CompiledDagInput = z.input<typeof compiledDagSchema>;
 export type CompiledDagOutput = z.infer<typeof compiledDagSchema>;
