@@ -39,7 +39,7 @@ const request = (operation: RepositoryOperation, path: string, humanAuthorizedPr
   routeId: '01_readiness',
   operation,
   path,
-  humanAuthorizedProtectedPaths,
+  ...(humanAuthorizedProtectedPaths !== undefined ? { humanAuthorizedProtectedPaths } : {}),
 });
 
 describe('routing subsystem adversarial oracle', () => {
