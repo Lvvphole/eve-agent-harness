@@ -48,21 +48,26 @@ function expectErrorCode(
 }
 
 describe('compileDag', () => {
-  it('orders prerequisites before their dependents', () => {
-    const result = compile([
+  it('orders prerequisites before dependents and preserves proposal metadata', () => {
+    const inputNodes = [
       node('publish', ['bundle']),
       node('bundle', ['source']),
       node('source'),
-    ]);
+    ];
+    const result = compile(inputNodes);
 
     expect(result.success).toBe(true);
     if (!result.success) return;
     expect(compiledDagSchema.safeParse(result.data).success).toBe(true);
+    expect(result.data.task_envelope_id).toBe('INC-0.2C1-Stage-C-deadbeef');
+    expect(result.data.authority_id).toBe('compiler-test');
+    expect(result.data.source_digest).toBe(SOURCE_DIGEST);
     expect(result.data.execution_order).toEqual([
       'source',
       'bundle',
       'publish',
     ]);
+    expect(result.data.nodes).toEqual(inputNodes);
   });
 
   it('rejects cyclical dependencies', () => {
@@ -85,10 +90,19 @@ describe('compileDag', () => {
 
     expectErrorCode(result, 'DUPLICATE_NODE_ID');
   });
+
+  it('rejects out-of-bounds or invalid spans', () => {
+    const invalidNode: DagNode = {
+      ...node('invalid-span'),
+      span: { start_line: 0, start_col: 1, end_line: 1, end_col: 1 },
+    };
+
+    expectErrorCode(compile([invalidNode]), 'SCHEMA_VIOLATION');
+  });
 });
 
 describe('sealed DAG integrity', () => {
-  it('rejects tampered DAG bytes and an invalid signature', () => {
+  it('verifies valid artifacts and rejects tampered bytes or signatures', () => {
     const dag: CompiledDag = {
       schema_version: 1,
       task_envelope_id: 'INC-0.2C1-Stage-C-deadbeef',
@@ -99,6 +113,7 @@ describe('sealed DAG integrity', () => {
     };
     const artifact = sealDag(dag, PRIVATE_KEY_HEX);
     expect(sealedDagArtifactSchema.safeParse(artifact).success).toBe(true);
+    expect(verifySealedDag(artifact)).toBe(true);
 
     const tamperedJson = { ...artifact, dag_json: `${artifact.dag_json} ` };
     expect(verifySealedDag(tamperedJson)).toBe(false);
