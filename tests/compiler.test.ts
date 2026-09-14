@@ -13,7 +13,10 @@ import type {
   DagValidationErrorCode,
   DagValidationResult,
 } from '../src/types/dag.js';
-import type { ProposedOperation } from '../src/types/proposals.js';
+import type {
+  ProposalOpType,
+  ProposedOperation,
+} from '../src/types/proposals.js';
 
 const SOURCE_DIGEST = `sha256:${'a'.repeat(64)}`;
 const PRIVATE_KEY_HEX = '1'.repeat(64);
@@ -21,11 +24,12 @@ const PRIVATE_KEY_HEX = '1'.repeat(64);
 function operation(
   opId: string,
   dependencies: readonly string[] = [],
+  opType: ProposalOpType = 'insert',
 ): ProposedOperation {
   return {
     op_id: opId,
     target_path: `src/${opId}.ts`,
-    op_type: 'insert',
+    op_type: opType,
     span: { start_line: 1, start_col: 1, end_line: 1, end_col: 1 },
     payload: opId,
     dependencies,
@@ -53,8 +57,8 @@ function expectErrorCode(
 describe('compileDag', () => {
   it('orders prerequisites before their dependents', () => {
     const result = compile([
-      operation('publish', ['bundle']),
-      operation('bundle', ['source']),
+      operation('publish', ['bundle'], 'delete'),
+      operation('bundle', ['source'], 'replace'),
       operation('source'),
     ]);
 
@@ -73,6 +77,22 @@ describe('compileDag', () => {
       span: { start_line: 1, start_col: 1, end_line: 1, end_col: 1 },
       payload: 'source',
       dependencies: [],
+    });
+    expect(result.data.nodes).toContainEqual({
+      id: 'bundle',
+      target_path: 'src/bundle.ts',
+      op_type: 'replace',
+      span: { start_line: 1, start_col: 1, end_line: 1, end_col: 1 },
+      payload: 'bundle',
+      dependencies: ['source'],
+    });
+    expect(result.data.nodes).toContainEqual({
+      id: 'publish',
+      target_path: 'src/publish.ts',
+      op_type: 'delete',
+      span: { start_line: 1, start_col: 1, end_line: 1, end_col: 1 },
+      payload: 'publish',
+      dependencies: ['bundle'],
     });
   });
 
