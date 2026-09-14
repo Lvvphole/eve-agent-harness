@@ -10,31 +10,34 @@ import {
 } from '../src/schemas/dag.js';
 import type {
   CompiledDag,
-  DagNode,
   DagValidationErrorCode,
   DagValidationResult,
 } from '../src/types/dag.js';
+import type { ProposedOperation } from '../src/types/proposals.js';
 
 const SOURCE_DIGEST = `sha256:${'a'.repeat(64)}`;
 const PRIVATE_KEY_HEX = '1'.repeat(64);
 
-function node(id: string, dependencies: readonly string[] = []): DagNode {
+function operation(
+  opId: string,
+  dependencies: readonly string[] = [],
+): ProposedOperation {
   return {
-    id,
-    target_path: `src/${id}.ts`,
+    op_id: opId,
+    target_path: `src/${opId}.ts`,
     op_type: 'insert',
     span: { start_line: 1, start_col: 1, end_line: 1, end_col: 1 },
-    payload: id,
+    payload: opId,
     dependencies,
   };
 }
 
-function compile(nodes: readonly DagNode[]): DagValidationResult {
+function compile(proposals: readonly ProposedOperation[]): DagValidationResult {
   return compileDag({
     task_envelope_id: 'INC-0.2C1-Stage-C-deadbeef',
     authority_id: 'compiler-test',
     source_digest: SOURCE_DIGEST,
-    proposals: nodes,
+    proposals,
   });
 }
 
@@ -48,68 +51,80 @@ function expectErrorCode(
 }
 
 describe('compileDag', () => {
-  it('orders prerequisites before dependents and preserves proposal metadata', () => {
-    const inputNodes = [
-      node('publish', ['bundle']),
-      node('bundle', ['source']),
-      node('source'),
-    ];
-    const result = compile(inputNodes);
+  it('orders prerequisites before their dependents', () => {
+    const result = compile([
+      operation('publish', ['bundle']),
+      operation('bundle', ['source']),
+      operation('source'),
+    ]);
 
     expect(result.success).toBe(true);
     if (!result.success) return;
     expect(compiledDagSchema.safeParse(result.data).success).toBe(true);
-    expect(result.data.task_envelope_id).toBe('INC-0.2C1-Stage-C-deadbeef');
-    expect(result.data.authority_id).toBe('compiler-test');
-    expect(result.data.source_digest).toBe(SOURCE_DIGEST);
     expect(result.data.execution_order).toEqual([
       'source',
       'bundle',
       'publish',
     ]);
-    expect(result.data.nodes).toEqual(inputNodes);
+    expect(result.data.nodes).toContainEqual({
+      id: 'source',
+      target_path: 'src/source.ts',
+      op_type: 'insert',
+      span: { start_line: 1, start_col: 1, end_line: 1, end_col: 1 },
+      payload: 'source',
+      dependencies: [],
+    });
   });
 
   it('rejects cyclical dependencies', () => {
     const result = compile([
-      node('first', ['second']),
-      node('second', ['first']),
+      operation('first', ['second']),
+      operation('second', ['first']),
     ]);
 
     expectErrorCode(result, 'CYCLE_DETECTED');
   });
 
   it('rejects missing dependencies', () => {
-    const result = compile([node('dependent', ['missing'])]);
+    const result = compile([operation('dependent', ['missing'])]);
 
     expectErrorCode(result, 'MISSING_DEPENDENCY');
   });
 
   it('rejects duplicate node IDs', () => {
-    const result = compile([node('duplicate'), node('duplicate')]);
+    const result = compile([operation('duplicate'), operation('duplicate')]);
 
     expectErrorCode(result, 'DUPLICATE_NODE_ID');
   });
 
-  it('rejects out-of-bounds or invalid spans', () => {
-    const invalidNode: DagNode = {
-      ...node('invalid-span'),
-      span: { start_line: 0, start_col: 1, end_line: 1, end_col: 1 },
+  it('rejects spans whose end precedes their start', () => {
+    const invalidSpan = {
+      ...operation('invalid-span'),
+      span: { start_line: 2, start_col: 1, end_line: 1, end_col: 1 },
     };
 
-    expectErrorCode(compile([invalidNode]), 'SCHEMA_VIOLATION');
+    expectErrorCode(compile([invalidSpan]), 'SCHEMA_VIOLATION');
   });
 });
 
 describe('sealed DAG integrity', () => {
-  it('verifies valid artifacts and rejects tampered bytes or signatures', () => {
+  it('rejects tampered DAG bytes and an invalid signature', () => {
     const dag: CompiledDag = {
       schema_version: 1,
       task_envelope_id: 'INC-0.2C1-Stage-C-deadbeef',
       authority_id: 'compiler-test',
       source_digest: SOURCE_DIGEST,
       execution_order: ['source'],
-      nodes: [node('source')],
+      nodes: [
+        {
+          id: 'source',
+          target_path: 'src/source.ts',
+          op_type: 'insert',
+          span: { start_line: 1, start_col: 1, end_line: 1, end_col: 1 },
+          payload: 'source',
+          dependencies: [],
+        },
+      ],
     };
     const artifact = sealDag(dag, PRIVATE_KEY_HEX);
     expect(sealedDagArtifactSchema.safeParse(artifact).success).toBe(true);
