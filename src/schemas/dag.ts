@@ -17,7 +17,7 @@ export const dagNodeSchema = z
       .regex(/^[a-zA-Z0-9_.-]+$/),
     target_path: z.string().min(1).regex(CANONICAL_PATH_REGEX),
     op_type: z.enum(['insert', 'replace', 'delete']),
-    span: textSpanSchema,
+    span: textSpanSchema.readonly(),
     payload: z.string(),
     dependencies: z
       .array(
